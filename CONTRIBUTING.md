@@ -8,7 +8,7 @@ This project uses `pnpm` for dependency management and TypeScript for developmen
 
 ```bash
 # Clone the repository
-git clone https://github.com/toon-format/toon-vscode.git
+git clone https://github.com/toon-format/vscode.git
 cd toon-vscode
 
 # Install dependencies

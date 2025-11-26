@@ -18,7 +18,7 @@ Currently in development. Planned features:
 This extension is not yet published to the Visual Studio Marketplace. To install locally:
 
 ```bash
-git clone https://github.com/toon-format/toon-vscode.git
+git clone https://github.com/toon-format/vscode.git
 cd toon-vscode
 pnpm install
 pnpm build
@@ -28,7 +28,7 @@ pnpm build
 
 ```bash
 # Setup
-git clone https://github.com/toon-format/toon-vscode.git
+git clone https://github.com/toon-format/vscode.git
 cd toon-vscode
 pnpm install
 
@@ -63,7 +63,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 ## Documentation
 
 - [📜 TOON Specification](https://github.com/toon-format/spec) - Official specification
-- [🐛 Issues](https://github.com/toon-format/toon-vscode/issues) - Bug reports and features
+- [🐛 Issues](https://github.com/toon-format/vscode/issues) - Bug reports and features
 - [🤝 Contributing](CONTRIBUTING.md) - Contribution guidelines
 
 ## Related Projects

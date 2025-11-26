@@ -7,13 +7,13 @@
   "packageManager": "pnpm@10.23.0",
   "description": "Visual Studio Code extension for TOON format support",
   "license": "MIT",
-  "homepage": "https://github.com/toon-format/toon-vscode#readme",
+  "homepage": "https://github.com/toon-format/vscode#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/toon-format/toon-vscode.git"
+    "url": "https://github.com/toon-format/vscode.git"
   },
   "bugs": {
-    "url": "https://github.com/toon-format/toon-vscode/issues"
+    "url": "https://github.com/toon-format/vscode/issues"
   },
   "keywords": [
     "toon",
