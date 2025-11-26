@@ -1,7 +1,7 @@
 {
   "publisher": "toon-format",
-  "name": "toon-vscode",
-  "displayName": "TOON Format",
+  "name": "toon",
+  "displayName": "Token-Oriented Object Notation (TOON) Support",
   "type": "module",
   "version": "0.0.1",
   "packageManager": "pnpm@10.23.0",
@@ -24,7 +24,7 @@
     "Programming Languages",
     "Formatters"
   ],
-  "main": "./dist/extension.js",
+  "main": "./dist/extension.mjs",
   "engines": {
     "vscode": "^1.95.0",
     "node": ">=24.0.0"
