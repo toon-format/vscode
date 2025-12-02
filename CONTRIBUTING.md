@@ -79,11 +79,13 @@ Before submitting changes that affect TOON format handling:
 
 ## Pull Request Guidelines
 
-- **Title**: Use a clear, descriptive title (e.g., "Add syntax highlighting for arrays", "Fix: Handle edge case in validation")
+- **Title**: Use a clear, descriptive title
 - **Description**: Explain what changes you made and why
 - **Tests**: Include tests or manual testing instructions for your changes
-- **Documentation**: Update README if needed
+- **Documentation**: Update README or documentation if needed
 - **Commits**: Use clear commit messages ([Conventional Commits](https://www.conventionalcommits.org/) preferred)
+
+Your pull request will use our standard template which guides you through the required information.
 
 ## Publishing
 
@@ -100,13 +102,15 @@ pnpm package  # Creates a .vsix file
 - **GitHub Discussions**: For questions and general discussion
 - **Pull Requests**: For code reviews and implementation discussion
 
-## Co-Maintainers
+## Maintainers
 
 This is a collaborative project. Current maintainers:
 
-- @johannschopplich
+- [@VishalRaut2106](https://github.com/VishalRaut2106)
+- [@eveiljuice](https://github.com/eveiljuice)
+- [@johannschopplich](https://github.com/johannschopplich)
 
-All maintainers have equal decision-making power. For major architectural decisions, please open a discussion issue first.
+All maintainers have equal and consensual decision-making power. For major architectural decisions, please open a discussion issue first.
 
 ## License
 
