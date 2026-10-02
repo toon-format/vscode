@@ -1,3 +1,6 @@
-onlyBuiltDependencies:
-  - '@vscode/vsce-sign'
-  - keytar
+minimumReleaseAgeExcludePrune: true
+trustPolicy: no-downgrade
+shellEmulator: true
+
+allowBuilds:
+  '@vscode/vsce-sign': true

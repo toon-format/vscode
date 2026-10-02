@@ -4,7 +4,7 @@
   "displayName": "Token-Oriented Object Notation (TOON) Support",
   "type": "module",
   "version": "0.0.1",
-  "packageManager": "pnpm@10.23.0",
+  "packageManager": "pnpm@11.17.0",
   "description": "Visual Studio Code extension for TOON format support",
   "license": "MIT",
   "homepage": "https://github.com/toon-format/vscode#readme",
@@ -34,10 +34,10 @@
     "publish": "vsce publish"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^6.2.0",
-    "@types/node": "^24.10.1",
-    "@vscode/vsce": "^3.2.1",
-    "eslint": "^9.39.1",
-    "typescript": "^5.9.3"
+    "@antfu/eslint-config": "^9.5.1",
+    "@types/node": "^26.6.3",
+    "@vscode/vsce": "^4.0.0",
+    "eslint": "^10.11.0",
+    "typescript": "^6.0.3"
   }
 }
