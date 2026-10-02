@@ -70,6 +70,8 @@ describe('grammar', () => {
     // §7.1 escapes
     ['k: "\\u00e9"', '\\u00e9', 'constant.character.escape.toon'],
     ['k: "\\/"', '\\/', 'invalid.illegal.unrecognized-string-escape.toon'],
+    ['"a\\/b": 1', '\\/', 'invalid.illegal.unrecognized-string-escape.toon'],
+    ['t[1]{"a\\nb"}:', '\\n', 'constant.character.escape.toon'],
   ])('%s → %s', (source, text, scope) => {
     expect(scopeOf(source, text)).toBe(scope)
   })

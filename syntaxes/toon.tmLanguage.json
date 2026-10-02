@@ -47,7 +47,12 @@
               "match": "^ +(?:(?:(\"(?:[^\"\\\\]|\\\\.)*\")|([^\\s:\"\\[\\]{},](?:[^:\"\\[\\]{},]*[^\\s:\"\\[\\]{},])?)) *(:))?(.*)",
               "captures": {
                 "1": {
-                  "name": "support.type.property-name.toon"
+                  "name": "support.type.property-name.toon",
+                  "patterns": [
+                    {
+                      "include": "#string-escapes"
+                    }
+                  ]
                 },
                 "2": {
                   "name": "support.type.property-name.toon"
@@ -85,7 +90,12 @@
               "match": "^ +(?:(?:(\"(?:[^\"\\\\]|\\\\.)*\")|([^\\s:\"\\[\\]{}|](?:[^:\"\\[\\]{}|]*[^\\s:\"\\[\\]{}|])?)) *(:))?(.*)",
               "captures": {
                 "1": {
-                  "name": "support.type.property-name.toon"
+                  "name": "support.type.property-name.toon",
+                  "patterns": [
+                    {
+                      "include": "#string-escapes"
+                    }
+                  ]
                 },
                 "2": {
                   "name": "support.type.property-name.toon"
@@ -123,7 +133,12 @@
               "match": "^ +(?:(?:(\"(?:[^\"\\\\]|\\\\.)*\")|([^\\s:\"\\[\\]{}](?:[^:\"\\[\\]{}\\t]*[^\\s:\"\\[\\]{}])?)) *(:))?(.*)",
               "captures": {
                 "1": {
-                  "name": "support.type.property-name.toon"
+                  "name": "support.type.property-name.toon",
+                  "patterns": [
+                    {
+                      "include": "#string-escapes"
+                    }
+                  ]
                 },
                 "2": {
                   "name": "support.type.property-name.toon"
@@ -189,7 +204,12 @@
       "begin": "\\G(?:(\"(?:[^\"\\\\]|\\\\.)*\")|([^\\s:\"\\[\\]{}](?:[^:\"\\[\\]{}]*[^\\s:\"\\[\\]{}])?))?(\\[)(0|[1-9][0-9]*)(:)?(\\t|\\|)?(\\])(?=[{:])",
       "beginCaptures": {
         "1": {
-          "name": "support.type.property-name.toon"
+          "name": "support.type.property-name.toon",
+          "patterns": [
+            {
+              "include": "#string-escapes"
+            }
+          ]
         },
         "2": {
           "name": "support.type.property-name.toon"
@@ -282,7 +302,16 @@
         },
         {
           "match": "\"(?:[^\"\\\\]|\\\\.)*\"",
-          "name": "support.type.property-name.field.toon"
+          "name": "support.type.property-name.field.toon",
+          "captures": {
+            "0": {
+              "patterns": [
+                {
+                  "include": "#string-escapes"
+                }
+              ]
+            }
+          }
         },
         {
           "match": "[,|\\t]",
@@ -299,7 +328,12 @@
       "match": "\\G(?:(\"(?:[^\"\\\\]|\\\\.)*\")|([^\\s:\"\\[\\]{}](?:[^:\"\\[\\]{}]*[^\\s:\"\\[\\]{}])?))[ ]*(:)(.*)$",
       "captures": {
         "1": {
-          "name": "support.type.property-name.toon"
+          "name": "support.type.property-name.toon",
+          "patterns": [
+            {
+              "include": "#string-escapes"
+            }
+          ]
         },
         "2": {
           "name": "support.type.property-name.toon"
@@ -419,7 +453,7 @@
       ]
     },
     "string-quoted": {
-      "comment": "§7.1: escapes",
+      "comment": "§7.1: quoted strings",
       "begin": "\"",
       "beginCaptures": {
         "0": {
@@ -433,6 +467,14 @@
         }
       },
       "name": "string.quoted.double.toon",
+      "patterns": [
+        {
+          "include": "#string-escapes"
+        }
+      ]
+    },
+    "string-escapes": {
+      "comment": "§7.1: escapes in quoted strings, keys, and field names",
       "patterns": [
         {
           "match": "\\\\(?:[\\\\\"nrt]|u[0-9A-Fa-f]{4})",
