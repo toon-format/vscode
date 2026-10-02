@@ -1,30 +1,24 @@
-# Contributing to toon-vscode
+# Contributing to the TOON VS Code extension
 
 Thank you for your interest in contributing to the official Visual Studio Code extension for TOON!
 
 ## Project Setup
 
-This project uses `pnpm` for dependency management and TypeScript for development.
+This project uses `pnpm` for dependency management. The extension is a TextMate grammar (`syntaxes/toon.tmLanguage.json`) plus a language configuration – there is no build step.
 
 ```bash
 # Clone the repository
 git clone https://github.com/toon-format/vscode.git
-cd toon-vscode
+cd vscode
 
 # Install dependencies
 pnpm install
 
-# Build the extension
-pnpm build
-
-# Development mode (watch)
-pnpm dev
+# Run the grammar tests
+pnpm test
 
 # Run linting
 pnpm lint
-
-# Type check
-pnpm test:types
 ```
 
 ## Development Workflow
@@ -32,30 +26,20 @@ pnpm test:types
 1. **Fork the repository** and create a feature branch
 2. **Make your changes** following the coding standards below
 3. **Add tests** for any new functionality
-4. **Ensure all checks pass** (lint, type check, build)
+4. **Ensure all checks pass** (lint, test)
 5. **Submit a pull request** with a clear description
 
-## Testing the Extension
+## Testing the Grammar
 
-To test your changes in VS Code:
+`test/grammar.test.ts` checks single-line scope probes against the spec, runs the spec's decode fixtures, and snapshots the tokens of `test/fixtures/example.toon`. After an intended grammar change, update the snapshot with `pnpm test -u` and review the diff in `test/__snapshots__/`.
+
+To try your changes in VS Code:
 
 1. Open the project in VS Code
 2. Press `F5` to launch an Extension Development Host
-3. Test your changes in the development instance
-4. Check the Debug Console for errors or logs
+3. Open a `.toon` file and run **Developer: Inspect Editor Tokens and Scopes** to check the scopes
 
 ## Coding Standards
-
-### TypeScript
-
-- All code must include TypeScript types
-- Use strict mode (configured in `tsconfig.json`)
-- Run type checking before committing:
-  ```bash
-  pnpm test:types
-  ```
-
-### Code Style
 
 - We use ESLint with `@antfu/eslint-config`
 - Run before committing:
@@ -63,10 +47,6 @@ To test your changes in VS Code:
   pnpm lint
   pnpm lint:fix  # Auto-fix issues
   ```
-
-### Node.js Version Support
-
-We target Node.js 24+ to match the main toon repository.
 
 ## SPEC Compliance
 
@@ -89,7 +69,7 @@ Your pull request will use our standard template which guides you through the re
 
 ## Publishing
 
-Publishing to the Visual Studio Marketplace is handled by the release workflow. Only maintainers can trigger releases.
+Maintainers release with `pnpm release`, which bumps the version and pushes a `v*` tag. The release workflow then publishes to the Visual Studio Marketplace and Open VSX.
 
 To package the extension locally:
 ```bash
