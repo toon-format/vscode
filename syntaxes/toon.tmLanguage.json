@@ -453,23 +453,31 @@
       ]
     },
     "string-quoted": {
-      "comment": "§7.1: quoted strings",
-      "begin": "\"",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.begin.toon"
-        }
-      },
-      "end": "\"|$",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.end.toon"
-        }
-      },
-      "name": "string.quoted.double.toon",
+      "comment": "§7.1: quoted strings; an unterminated one is an error",
       "patterns": [
         {
-          "include": "#string-escapes"
+          "match": "\"(?:[^\"\\\\]|\\\\.)*\\\\?$",
+          "name": "invalid.illegal.unterminated-string.toon"
+        },
+        {
+          "begin": "\"",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.toon"
+            }
+          },
+          "end": "\"|$",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.toon"
+            }
+          },
+          "name": "string.quoted.double.toon",
+          "patterns": [
+            {
+              "include": "#string-escapes"
+            }
+          ]
         }
       ]
     },

@@ -72,6 +72,7 @@ describe('grammar', () => {
     ['k: "\\/"', '\\/', 'invalid.illegal.unrecognized-string-escape.toon'],
     ['"a\\/b": 1', '\\/', 'invalid.illegal.unrecognized-string-escape.toon'],
     ['t[1]{"a\\nb"}:', '\\n', 'constant.character.escape.toon'],
+    ['q: "abc', '"abc', 'invalid.illegal.unterminated-string.toon'],
   ])('%s → %s', (source, text, scope) => {
     expect(scopeOf(source, text)).toBe(scope)
   })
