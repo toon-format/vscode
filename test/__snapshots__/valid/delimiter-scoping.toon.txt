@@ -13,9 +13,7 @@
 >   1|a,b
   "1" constant.numeric.toon
   "|" punctuation.separator.delimiter.toon
-  "a" string.unquoted.toon
-  "," punctuation.separator.delimiter.toon
-  "b" string.unquoted.toon
+  "a,b" string.unquoted.toon
 > 
 > items[1|]:
   "items" support.type.property-name.toon

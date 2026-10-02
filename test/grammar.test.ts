@@ -32,8 +32,9 @@ function tokenize(source: string): [string, string][][] {
   })
 }
 
-function scopeOf(line: string, text: string): string | undefined {
-  return tokenize(line)[0]!.find(([tokenText]) => tokenText === text)?.[1]
+/** Returns the scope of `text` on the last line of `source`. */
+function scopeOf(source: string, text: string): string | undefined {
+  return tokenize(source).at(-1)!.find(([tokenText]) => tokenText === text)?.[1]
 }
 
 describe('grammar', () => {
@@ -58,14 +59,19 @@ describe('grammar', () => {
     ['n[4]: 1e5,-0,.5,05', '.5', 'string.unquoted.toon'],
     ['n[4]: 1e5,-0,.5,05', '05', 'string.unquoted.toon'],
     ['n: +1', '+1', 'string.unquoted.toon'],
+    // §11.2 only the active delimiter splits, and only inline arrays and rows
+    ['n: a,b|c', 'a,b|c', 'string.unquoted.toon'],
+    ['x[2|]: a,b|c', 'a,b', 'string.unquoted.toon'],
+    ['- t[1|]{a|b}:\n    x,y|z', 'x,y', 'string.unquoted.toon'],
+    ['- t[1|]{a|b}:\n    x|y\n  k: a|b', 'a|b', 'string.unquoted.toon'],
     // §9.3 `[]` is a string inside inline arrays and rows
     ['tags[1]: []', '[]', 'string.unquoted.toon'],
     ['- []', '[]', 'constant.language.empty-array.toon'],
     // §7.1 escapes
     ['k: "\\u00e9"', '\\u00e9', 'constant.character.escape.toon'],
     ['k: "\\/"', '\\/', 'invalid.illegal.unrecognized-string-escape.toon'],
-  ])('%s → %s', (line, text, scope) => {
-    expect(scopeOf(line, text)).toBe(scope)
+  ])('%s → %s', (source, text, scope) => {
+    expect(scopeOf(source, text)).toBe(scope)
   })
 })
 
