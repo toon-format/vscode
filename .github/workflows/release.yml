@@ -12,19 +12,39 @@ permissions:
   contents: read
 
 jobs:
-  release:
+  changelog:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Generate changelog and create GitHub release
+        run: npx changelogithub
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     # Both registries trust OIDC tokens from this environment only
     environment: release
     permissions:
-      contents: write # GitHub release via changelogithub
+      contents: read
       id-token: write # OIDC for Azure login and Open VSX trusted publishing
     steps:
       - name: Checkout
         uses: actions/checkout@v7
         with:
-          fetch-depth: 0 # changelogithub needs the tag history
           persist-credentials: false
 
       - name: Setup pnpm
@@ -41,11 +61,6 @@ jobs:
 
       - name: Package extension
         run: pnpm run package --out toon.vsix
-
-      - name: Generate changelog and create GitHub release
-        run: npx changelogithub
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Log in to Azure
         uses: azure/login@v3
