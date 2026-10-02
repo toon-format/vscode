@@ -61,6 +61,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest run",
+    "typecheck": "tsc --noEmit",
     "package": "vsce package --no-dependencies",
     "release": "bumpp"
   },
