@@ -5,7 +5,7 @@
   "type": "module",
   "version": "0.0.1",
   "packageManager": "pnpm@11.17.0",
-  "description": "Visual Studio Code extension for TOON format support",
+  "description": "Syntax highlighting for TOON (Token-Oriented Object Notation)",
   "license": "MIT",
   "homepage": "https://github.com/toon-format/vscode#readme",
   "repository": {
