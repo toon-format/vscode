@@ -55,7 +55,14 @@
         "scopeName": "source.toon",
         "path": "./syntaxes/toon.tmLanguage.json"
       }
-    ]
+    ],
+    "configurationDefaults": {
+      "[toon]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.detectIndentation": false
+      }
+    }
   },
   "scripts": {
     "lint": "eslint .",
