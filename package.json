@@ -23,6 +23,12 @@
   "categories": [
     "Programming Languages"
   ],
+  "files": [
+    "LICENSE",
+    "README.md",
+    "language-configuration.json",
+    "syntaxes"
+  ],
   "engines": {
     "vscode": "^1.95.0"
   },
@@ -55,8 +61,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest run",
-    "package": "vsce package",
-    "publish": "vsce publish"
+    "package": "vsce package --no-dependencies"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^9.5.1",
