@@ -1,0 +1,174 @@
+> # Comment lines are full-line only
+  "#" punctuation.definition.comment.toon
+  " Comment lines are full-line only" comment.line.number-sign.toon
+> name: TOON
+  "name" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "TOON" string.unquoted.toon
+> version: 4.1
+  "version" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "4.1" constant.numeric.toon
+> draft: false
+  "draft" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "false" constant.language.toon
+> license: null
+  "license" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "null" constant.language.toon
+> tagline: "Token-Oriented\tObject Notation"
+  "tagline" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "\"" punctuation.definition.string.begin.toon
+  "Token-Oriented" string.quoted.double.toon
+  "\\t" constant.character.escape.toon
+  "Object Notation" string.quoted.double.toon
+  "\"" punctuation.definition.string.end.toon
+> note: x #not-a-comment
+  "note" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "x #not-a-comment" string.unquoted.toon
+> tags[3]: json,llm,"a, b"
+  "tags" support.type.property-name.toon
+  "[" punctuation.definition.array.begin.toon
+  "3" constant.numeric.length.toon
+  "]" punctuation.definition.array.end.toon
+  ":" punctuation.separator.key-value.toon
+  "json" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "llm" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "\"" punctuation.definition.string.begin.toon
+  "a, b" string.quoted.double.toon
+  "\"" punctuation.definition.string.end.toon
+> empty: []
+  "empty" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "[]" constant.language.empty-array.toon
+> pipes[3|]: a|b|c
+  "pipes" support.type.property-name.toon
+  "[" punctuation.definition.array.begin.toon
+  "3" constant.numeric.length.toon
+  "|" punctuation.separator.delimiter.toon
+  "]" punctuation.definition.array.end.toon
+  ":" punctuation.separator.key-value.toon
+  "a" string.unquoted.toon
+  "|" punctuation.separator.delimiter.toon
+  "b" string.unquoted.toon
+  "|" punctuation.separator.delimiter.toon
+  "c" string.unquoted.toon
+> users[2]{id,name,role}:
+  "users" support.type.property-name.toon
+  "[" punctuation.definition.array.begin.toon
+  "2" constant.numeric.length.toon
+  "]" punctuation.definition.array.end.toon
+  "{" punctuation.definition.field-list.begin.toon
+  "id" support.type.property-name.field.toon
+  "," punctuation.separator.delimiter.toon
+  "name" support.type.property-name.field.toon
+  "," punctuation.separator.delimiter.toon
+  "role" support.type.property-name.field.toon
+  "}" punctuation.definition.field-list.end.toon
+  ":" punctuation.separator.key-value.toon
+>   1,Alice,admin
+  "1" constant.numeric.toon
+  "," punctuation.separator.delimiter.toon
+  "Alice" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "admin" string.unquoted.toon
+>   # A comment between rows does not end them
+  "  " comment.line.number-sign.toon
+  "#" punctuation.definition.comment.toon
+  " A comment between rows does not end them" comment.line.number-sign.toon
+>   2,Bob,user
+  "2" constant.numeric.toon
+  "," punctuation.separator.delimiter.toon
+  "Bob" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "user" string.unquoted.toon
+> orders[2]{id,customer{name,country},total}:
+  "orders" support.type.property-name.toon
+  "[" punctuation.definition.array.begin.toon
+  "2" constant.numeric.length.toon
+  "]" punctuation.definition.array.end.toon
+  "{" punctuation.definition.field-list.begin.toon
+  "id" support.type.property-name.field.toon
+  "," punctuation.separator.delimiter.toon
+  "customer" support.type.property-name.field.toon
+  "{" punctuation.definition.field-list.begin.toon
+  "name" support.type.property-name.field.toon
+  "," punctuation.separator.delimiter.toon
+  "country" support.type.property-name.field.toon
+  "}" punctuation.definition.field-list.end.toon
+  "," punctuation.separator.delimiter.toon
+  "total" support.type.property-name.field.toon
+  "}" punctuation.definition.field-list.end.toon
+  ":" punctuation.separator.key-value.toon
+>   1,Ada,UK,9.99
+  "1" constant.numeric.toon
+  "," punctuation.separator.delimiter.toon
+  "Ada" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "UK" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "9.99" constant.numeric.toon
+>   2,Lin,CN,-1e3
+  "2" constant.numeric.toon
+  "," punctuation.separator.delimiter.toon
+  "Lin" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "CN" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "-1e3" constant.numeric.toon
+> scores[2:]{math,art}:
+  "scores" support.type.property-name.toon
+  "[" punctuation.definition.array.begin.toon
+  "2" constant.numeric.length.toon
+  ":" keyword.operator.keyed.toon
+  "]" punctuation.definition.array.end.toon
+  "{" punctuation.definition.field-list.begin.toon
+  "math" support.type.property-name.field.toon
+  "," punctuation.separator.delimiter.toon
+  "art" support.type.property-name.field.toon
+  "}" punctuation.definition.field-list.end.toon
+  ":" punctuation.separator.key-value.toon
+>   alice: 90,85
+  "alice" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "90" constant.numeric.toon
+  "," punctuation.separator.delimiter.toon
+  "85" constant.numeric.toon
+>   "bob smith": 78,92
+  "\"bob smith\"" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "78" constant.numeric.toon
+  "," punctuation.separator.delimiter.toon
+  "92" constant.numeric.toon
+> items[3]:
+  "items" support.type.property-name.toon
+  "[" punctuation.definition.array.begin.toon
+  "3" constant.numeric.length.toon
+  "]" punctuation.definition.array.end.toon
+  ":" punctuation.separator.key-value.toon
+>   - 42
+  "-" punctuation.definition.list.begin.toon
+  "42" constant.numeric.toon
+>   - [2]: x,y
+  "-" punctuation.definition.list.begin.toon
+  "[" punctuation.definition.array.begin.toon
+  "2" constant.numeric.length.toon
+  "]" punctuation.definition.array.end.toon
+  ":" punctuation.separator.key-value.toon
+  "x" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "y" string.unquoted.toon
+>   - title: Book
+  "-" punctuation.definition.list.begin.toon
+  "title" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "Book" string.unquoted.toon
+>     pages: 320
+  "pages" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "320" constant.numeric.toon

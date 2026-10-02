@@ -91,3 +91,17 @@ describe('spec decode fixtures', () => {
     }
   })
 })
+
+describe('example document', () => {
+  it('tokenizes every line', async () => {
+    const source = readFileSync(join(import.meta.dirname, 'fixtures/example.toon'), 'utf-8').trimEnd()
+    const lines = source.split('\n')
+    const snapshot = tokenize(source).map((tokens, index) => {
+      const scoped = tokens
+        .filter(([text, scope]) => scope !== 'source.toon' || text.trim() !== '')
+        .map(([text, scope]) => `  ${JSON.stringify(text)} ${scope}`)
+      return [`> ${lines[index]}`, ...scoped].join('\n')
+    })
+    await expect(`${snapshot.join('\n')}\n`).toMatchFileSnapshot('__snapshots__/example.toon.txt')
+  })
+})
