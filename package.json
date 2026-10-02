@@ -3,7 +3,7 @@
   "name": "toon",
   "displayName": "Token-Oriented Object Notation (TOON) Support",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "packageManager": "pnpm@11.17.0",
   "description": "Syntax highlighting for TOON (Token-Oriented Object Notation)",
   "license": "MIT",
