@@ -1,28 +1,21 @@
-import type { IGrammar } from 'vscode-textmate'
-import { readdirSync, readFileSync } from 'node:fs'
-import { createRequire } from 'node:module'
-import { dirname, join } from 'node:path'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { readdir, readFile } from 'node:fs/promises'
+import { describe, expect, it } from 'vitest'
 import { loadWASM, OnigScanner, OnigString } from 'vscode-oniguruma'
 import { INITIAL, parseRawGrammar, Registry } from 'vscode-textmate'
 
-const require = createRequire(import.meta.url)
-const grammarPath = join(import.meta.dirname, '../syntaxes/toon.tmLanguage.json')
-const fixtureDir = join(dirname(require.resolve('@toon-format/spec/package.json')), 'tests/fixtures/decode')
+const grammarUrl = new URL('../syntaxes/toon.tmLanguage.json', import.meta.url)
+const fixtureDir = new URL('tests/fixtures/decode/', import.meta.resolve('@toon-format/spec/package.json'))
 
-let grammar: IGrammar
-
-beforeAll(async () => {
-  await loadWASM(readFileSync(require.resolve('vscode-oniguruma/release/onig.wasm')).buffer)
-  const registry = new Registry({
-    onigLib: Promise.resolve({
-      createOnigScanner: patterns => new OnigScanner(patterns),
-      createOnigString: text => new OnigString(text),
-    }),
-    loadGrammar: async () => parseRawGrammar(readFileSync(grammarPath, 'utf-8'), grammarPath),
-  })
-  grammar = (await registry.loadGrammar('source.toon'))!
+await loadWASM(await readFile(new URL(import.meta.resolve('vscode-oniguruma/release/onig.wasm'))))
+const registry = new Registry({
+  onigLib: Promise.resolve({
+    createOnigScanner: patterns => new OnigScanner(patterns),
+    createOnigString: text => new OnigString(text),
+  }),
+  loadGrammar: async () => parseRawGrammar(await readFile(grammarUrl, 'utf-8'), grammarUrl.pathname),
 })
+const grammar = (await registry.loadGrammar('source.toon'))!
+const fixtureFiles = (await readdir(fixtureDir)).filter(file => file.endsWith('.json'))
 
 /** Tokenizes a document and returns `[text, innermost scope]` pairs per line. */
 function tokenize(source: string): [string, string][][] {
@@ -77,10 +70,8 @@ describe('grammar', () => {
 })
 
 describe('spec decode fixtures', () => {
-  const files = readdirSync(fixtureDir).filter(file => file.endsWith('.json'))
-
-  it.each(files)('%s: comment scope matches §5.1 exactly', (file) => {
-    const { tests } = JSON.parse(readFileSync(join(fixtureDir, file), 'utf-8')) as { tests: { input: string }[] }
+  it.each(fixtureFiles)('%s: comment scope matches §5.1 exactly', async (file) => {
+    const { tests } = JSON.parse(await readFile(new URL(file, fixtureDir), 'utf-8')) as { tests: { input: string }[] }
     for (const { input } of tests) {
       const lines = input.split('\n')
       tokenize(input).forEach((tokens, index) => {
@@ -94,7 +85,7 @@ describe('spec decode fixtures', () => {
 
 describe('example document', () => {
   it('tokenizes every line', async () => {
-    const source = readFileSync(join(import.meta.dirname, 'fixtures/example.toon'), 'utf-8').trimEnd()
+    const source = (await readFile(new URL('fixtures/example.toon', import.meta.url), 'utf-8')).trimEnd()
     const lines = source.split('\n')
     const snapshot = tokenize(source).map((tokens, index) => {
       const scoped = tokens
