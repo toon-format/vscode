@@ -21,40 +21,23 @@
     "serialization"
   ],
   "categories": [
-    "Programming Languages",
-    "Formatters"
+    "Programming Languages"
   ],
-  "main": "./dist/extension.mjs",
   "engines": {
-    "vscode": "^1.95.0",
-    "node": ">=24.0.0"
-  },
-  "contributes": {
-    "commands": [
-      {
-        "command": "toon.helloWorld",
-        "title": "TOON: Hello World"
-      }
-    ]
+    "vscode": "^1.95.0"
   },
   "scripts": {
-    "build": "tsdown",
-    "dev": "tsdown --watch",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "echo \"No tests yet\" && exit 0",
-    "test:types": "tsc --noEmit",
-    "package": "pnpm build && vsce package",
-    "publish": "pnpm build && vsce publish",
-    "vscode:prepublish": "pnpm build"
+    "package": "vsce package",
+    "publish": "vsce publish"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^6.2.0",
     "@types/node": "^24.10.1",
-    "@types/vscode": "^1.95.0",
     "@vscode/vsce": "^3.2.1",
     "eslint": "^9.39.1",
-    "tsdown": "^0.16.6",
     "typescript": "^5.9.3"
   }
 }
