@@ -12,7 +12,7 @@ pnpm test
 pnpm lint
 ```
 
-`test/grammar.test.ts` checks single-line scope probes against the spec, runs the spec's decode fixtures, and snapshots the tokens of `test/fixtures/example.toon`. After an intended grammar change, update the snapshot with `pnpm test -u` and review the diff in `test/__snapshots__/`.
+`test/grammar.test.ts` snapshots the tokens of every `examples/valid` and `examples/conversions` document in `@toon-format/spec`, probes the scopes of cases the examples lack, and runs the spec's decode fixtures. After an intended grammar change, update the snapshots with `pnpm test -u` and review the diff in `test/__snapshots__/`.
 
 To try a change in VS Code, press `F5` to launch an Extension Development Host, open a `.toon` file, and run **Developer: Inspect Editor Tokens and Scopes**.
 

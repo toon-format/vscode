@@ -1,0 +1,42 @@
+> orders[3]{id,customer{name,country},total}:
+  "orders" support.type.property-name.toon
+  "[" punctuation.definition.array.begin.toon
+  "3" constant.numeric.length.toon
+  "]" punctuation.definition.array.end.toon
+  "{" punctuation.definition.field-list.begin.toon
+  "id" support.type.property-name.field.toon
+  "," punctuation.separator.delimiter.toon
+  "customer" support.type.property-name.field.toon
+  "{" punctuation.definition.field-list.begin.toon
+  "name" support.type.property-name.field.toon
+  "," punctuation.separator.delimiter.toon
+  "country" support.type.property-name.field.toon
+  "}" punctuation.definition.field-list.end.toon
+  "," punctuation.separator.delimiter.toon
+  "total" support.type.property-name.field.toon
+  "}" punctuation.definition.field-list.end.toon
+  ":" punctuation.separator.key-value.toon
+>   1,Ada,DK,99
+  "1" constant.numeric.toon
+  "," punctuation.separator.delimiter.toon
+  "Ada" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "DK" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "99" constant.numeric.toon
+>   2,Bob,UK,149
+  "2" constant.numeric.toon
+  "," punctuation.separator.delimiter.toon
+  "Bob" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "UK" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "149" constant.numeric.toon
+>   3,Cleo,FR,249
+  "3" constant.numeric.toon
+  "," punctuation.separator.delimiter.toon
+  "Cleo" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "FR" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "249" constant.numeric.toon

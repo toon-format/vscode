@@ -1,0 +1,24 @@
+> id: 123
+  "id" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "123" constant.numeric.toon
+> name: Ada Lovelace
+  "name" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "Ada Lovelace" string.unquoted.toon
+> active: true
+  "active" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "true" constant.language.toon
+> email: ada@example.com
+  "email" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "ada@example.com" string.unquoted.toon
+> score: 98.5
+  "score" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "98.5" constant.numeric.toon
+> nickname: null
+  "nickname" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "null" constant.language.toon

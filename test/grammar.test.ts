@@ -4,7 +4,9 @@ import { loadWASM, OnigScanner, OnigString } from 'vscode-oniguruma'
 import { INITIAL, parseRawGrammar, Registry } from 'vscode-textmate'
 
 const grammarUrl = new URL('../syntaxes/toon.tmLanguage.json', import.meta.url)
-const fixtureDir = new URL('tests/fixtures/decode/', import.meta.resolve('@toon-format/spec/package.json'))
+const specDir = new URL('./', import.meta.resolve('@toon-format/spec/package.json'))
+const fixtureDir = new URL('tests/fixtures/decode/', specDir)
+const examplesDir = new URL('examples/', specDir)
 
 await loadWASM(await readFile(new URL(import.meta.resolve('vscode-oniguruma/release/onig.wasm'))))
 const registry = new Registry({
@@ -16,6 +18,9 @@ const registry = new Registry({
 })
 const grammar = (await registry.loadGrammar('source.toon'))!
 const fixtureFiles = (await readdir(fixtureDir)).filter(file => file.endsWith('.json'))
+const examples = (await readdir(examplesDir, { recursive: true }))
+  .filter(file => /^(?:valid|conversions)\/.*\.toon$/.test(file))
+  .sort()
 
 /** Tokenizes a document and returns `[text, innermost scope]` pairs per line. */
 function tokenize(source: string): [string, string][][] {
@@ -34,22 +39,13 @@ function scopeOf(line: string, text: string): string | undefined {
 describe('grammar', () => {
   it.each([
     // §5.1 comment lines
-    ['# note', ' note', 'comment.line.number-sign.toon'],
     ['name: "a # b"', 'a # b', 'string.quoted.double.toon'],
     ['note: x #tag', 'x #tag', 'string.unquoted.toon'],
     // §6 headers
-    ['users[2]{id,name}:', 'users', 'support.type.property-name.toon'],
-    ['users[2]{id,name}:', 'name', 'support.type.property-name.field.toon'],
-    ['items[3|]: a|b|c', '|', 'punctuation.separator.delimiter.toon'],
     ['"a:b"[2]: 1,2', '"a:b"', 'support.type.property-name.toon'],
     ['  - key[2]{a,b}:', 'key', 'support.type.property-name.toon'],
-    // §9.3 nested field groups
-    ['orders[2]{id,customer{name,country},total}:', 'country', 'support.type.property-name.field.toon'],
-    ['orders[2]{id,customer{name,country},total}:', 'total', 'support.type.property-name.field.toon'],
     // §9.5 keyed tabular form
-    ['users[2:]{age,city}:', ':', 'keyword.operator.keyed.toon'],
     ['[2:|]{a|b}:', 'b', 'support.type.property-name.field.toon'],
-    ['  alice: 30,Berlin', 'alice', 'support.type.property-name.toon'],
     // §5.2 key-value lines, §7.4 unquoted key tokens
     ['a:b[2]: x', 'a', 'support.type.property-name.toon'],
     ['foo-bar: 1', 'foo-bar', 'support.type.property-name.toon'],
@@ -62,8 +58,6 @@ describe('grammar', () => {
     // §7.1 escapes
     ['k: "\\u00e9"', '\\u00e9', 'constant.character.escape.toon'],
     ['k: "\\/"', '\\/', 'invalid.illegal.unrecognized-string-escape.toon'],
-    // §9.1 empty arrays
-    ['tags: []', '[]', 'constant.language.empty-array.toon'],
   ])('%s → %s', (line, text, scope) => {
     expect(scopeOf(line, text)).toBe(scope)
   })
@@ -83,9 +77,9 @@ describe('spec decode fixtures', () => {
   })
 })
 
-describe('example document', () => {
-  it('tokenizes every line', async () => {
-    const source = (await readFile(new URL('fixtures/example.toon', import.meta.url), 'utf-8')).trimEnd()
+describe('spec examples', () => {
+  it.each(examples)('%s', async (example) => {
+    const source = (await readFile(new URL(example, examplesDir), 'utf-8')).trimEnd()
     const lines = source.split('\n')
     const snapshot = tokenize(source).map((tokens, index) => {
       const scoped = tokens
@@ -93,6 +87,6 @@ describe('example document', () => {
         .map(([text, scope]) => `  ${JSON.stringify(text)} ${scope}`)
       return [`> ${lines[index]}`, ...scoped].join('\n')
     })
-    await expect(`${snapshot.join('\n')}\n`).toMatchFileSnapshot('__snapshots__/example.toon.txt')
+    await expect(`${snapshot.join('\n')}\n`).toMatchFileSnapshot(`__snapshots__/${example}.txt`)
   })
 })

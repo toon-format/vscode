@@ -1,0 +1,21 @@
+> items[3]:
+  "items" support.type.property-name.toon
+  "[" punctuation.definition.array.begin.toon
+  "3" constant.numeric.length.toon
+  "]" punctuation.definition.array.end.toon
+  ":" punctuation.separator.key-value.toon
+>   - 1
+  "-" punctuation.definition.list.begin.toon
+  "1" constant.numeric.toon
+>   - a: hello
+  "-" punctuation.definition.list.begin.toon
+  "a" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "hello" string.unquoted.toon
+>     b: world
+  "b" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "world" string.unquoted.toon
+>   - text value
+  "-" punctuation.definition.list.begin.toon
+  "text value" string.unquoted.toon
