@@ -4,8 +4,8 @@
   "displayName": "Token-Oriented Object Notation (TOON) Support",
   "type": "module",
   "version": "0.0.1",
-  "packageManager": "pnpm@10.23.0",
-  "description": "Visual Studio Code extension for TOON format support",
+  "packageManager": "pnpm@11.17.0",
+  "description": "Syntax highlighting for TOON (Token-Oriented Object Notation)",
   "license": "MIT",
   "homepage": "https://github.com/toon-format/vscode#readme",
   "repository": {
@@ -21,40 +21,68 @@
     "serialization"
   ],
   "categories": [
-    "Programming Languages",
-    "Formatters"
+    "Programming Languages"
   ],
-  "main": "./dist/extension.mjs",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "language-configuration.json",
+    "syntaxes"
+  ],
   "engines": {
-    "vscode": "^1.95.0",
-    "node": ">=24.0.0"
+    "vscode": "^1.95.0"
   },
   "contributes": {
-    "commands": [
+    "languages": [
       {
-        "command": "toon.helloWorld",
-        "title": "TOON: Hello World"
+        "id": "toon",
+        "aliases": [
+          "TOON",
+          "toon"
+        ],
+        "extensions": [
+          ".toon"
+        ],
+        "mimetypes": [
+          "text/toon"
+        ],
+        "configuration": "./language-configuration.json"
       }
-    ]
+    ],
+    "grammars": [
+      {
+        "language": "toon",
+        "scopeName": "source.toon",
+        "path": "./syntaxes/toon.tmLanguage.json"
+      }
+    ],
+    "configurationDefaults": {
+      "[toon]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.detectIndentation": false
+      }
+    }
   },
   "scripts": {
-    "build": "tsdown",
-    "dev": "tsdown --watch",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "echo \"No tests yet\" && exit 0",
-    "test:types": "tsc --noEmit",
-    "package": "pnpm build && vsce package",
-    "publish": "pnpm build && vsce publish",
-    "vscode:prepublish": "pnpm build"
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "package": "vsce package --no-dependencies",
+    "release": "bumpp"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^6.2.0",
-    "@types/node": "^24.10.1",
-    "@types/vscode": "^1.95.0",
-    "@vscode/vsce": "^3.2.1",
-    "eslint": "^9.39.1",
-    "tsdown": "^0.16.6",
-    "typescript": "^5.9.3"
+    "@antfu/eslint-config": "^9.5.1",
+    "@toon-format/spec": "^4.1.2",
+    "@types/node": "^26.6.3",
+    "@vscode/vsce": "^4.0.0",
+    "bumpp": "^12.3.0",
+    "eslint": "^10.11.0",
+    "ovsx": "^1.2.0",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.3",
+    "vscode-oniguruma": "^2.0.1",
+    "vscode-textmate": "^9.3.2"
   }
 }

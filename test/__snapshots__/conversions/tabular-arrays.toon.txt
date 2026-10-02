@@ -1,0 +1,39 @@
+> users[3]{id,name,role,active}:
+  "users" support.type.property-name.toon
+  "[" punctuation.definition.array.begin.toon
+  "3" constant.numeric.length.toon
+  "]" punctuation.definition.array.end.toon
+  "{" punctuation.definition.field-list.begin.toon
+  "id" support.type.property-name.field.toon
+  "," punctuation.separator.delimiter.toon
+  "name" support.type.property-name.field.toon
+  "," punctuation.separator.delimiter.toon
+  "role" support.type.property-name.field.toon
+  "," punctuation.separator.delimiter.toon
+  "active" support.type.property-name.field.toon
+  "}" punctuation.definition.field-list.end.toon
+  ":" punctuation.separator.key-value.toon
+>   1,Ada,admin,true
+  "1" constant.numeric.toon
+  "," punctuation.separator.delimiter.toon
+  "Ada" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "admin" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "true" constant.language.toon
+>   2,Bob,developer,true
+  "2" constant.numeric.toon
+  "," punctuation.separator.delimiter.toon
+  "Bob" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "developer" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "true" constant.language.toon
+>   3,Cleo,designer,false
+  "3" constant.numeric.toon
+  "," punctuation.separator.delimiter.toon
+  "Cleo" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "designer" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "false" constant.language.toon

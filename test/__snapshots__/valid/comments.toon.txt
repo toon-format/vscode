@@ -1,0 +1,32 @@
+> # Weekly export, generated 2025-01-15
+  "#" punctuation.definition.comment.toon
+  " Weekly export, generated 2025-01-15" comment.line.number-sign.toon
+> users[2]{id,name,role}:
+  "users" support.type.property-name.toon
+  "[" punctuation.definition.array.begin.toon
+  "2" constant.numeric.length.toon
+  "]" punctuation.definition.array.end.toon
+  "{" punctuation.definition.field-list.begin.toon
+  "id" support.type.property-name.field.toon
+  "," punctuation.separator.delimiter.toon
+  "name" support.type.property-name.field.toon
+  "," punctuation.separator.delimiter.toon
+  "role" support.type.property-name.field.toon
+  "}" punctuation.definition.field-list.end.toon
+  ":" punctuation.separator.key-value.toon
+>   # comment lines are stripped before row counting
+  "  " comment.line.number-sign.toon
+  "#" punctuation.definition.comment.toon
+  " comment lines are stripped before row counting" comment.line.number-sign.toon
+>   1,Ada,admin
+  "1" constant.numeric.toon
+  "," punctuation.separator.delimiter.toon
+  "Ada" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "admin" string.unquoted.toon
+>   2,Bob,user
+  "2" constant.numeric.toon
+  "," punctuation.separator.delimiter.toon
+  "Bob" string.unquoted.toon
+  "," punctuation.separator.delimiter.toon
+  "user" string.unquoted.toon

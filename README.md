@@ -1,77 +1,51 @@
-# TOON Format for Visual Studio Code
+# TOON for Visual Studio Code
 
-> **⚠️ Development Status:** This extension is in early development. Bare minimum setup for team collaboration.
+[![Visual Studio Marketplace](https://img.shields.io/visual-studio-marketplace/v/toon-format.toon)](https://marketplace.visualstudio.com/items?itemName=toon-format.toon)
+[![SPEC v4.1](https://img.shields.io/badge/spec-v4.1-lightgrey)](https://github.com/toon-format/spec/blob/main/SPEC.md)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
-Visual Studio Code extension for TOON format support. TOON is a compact, human-readable serialization format for LLM contexts with 30-60% token reduction vs JSON.
-
-## Features
-
-Currently in development. Planned features:
-
-- Syntax highlighting for `.toon` files
-- Format validation and error detection
-- Code formatting and auto-completion
-- Integration with TOON specification
+Highlights [TOON (Token-Oriented Object Notation)](https://github.com/toon-format/toon) in `.toon` files. TOON is a compact, indentation-based encoding of the JSON data model for LLM input.
 
 ## Installation
 
-This extension is not yet published to the Visual Studio Marketplace. To install locally:
-
 ```bash
-git clone https://github.com/toon-format/vscode.git
-cd toon-vscode
-pnpm install
-pnpm build
+code --install-extension toon-format.toon
 ```
 
-## Development
+VSCodium and other editors that use [Open VSX](https://open-vsx.org/extension/toon-format/toon) install it from there.
 
-```bash
-# Setup
-git clone https://github.com/toon-format/vscode.git
-cd toon-vscode
-pnpm install
+## Usage
 
-# Build
-pnpm build
+Open any `.toon` file, such as:
 
-# Development mode (watch)
-pnpm dev
-
-# Run linting
-pnpm lint
-
-# Type check
-pnpm test:types
-
-# Package extension
-pnpm package
+```toon
+users[2]{id,name,role}:
+  1,Ada,admin
+  2,Bob,user
 ```
 
-## Project Status & Roadmap
+The grammar scopes:
 
-Following semantic versioning towards 1.0.0:
+- Keys, array headers with their length and delimiter, and field lists – including nested field groups and keyed tabular headers
+- Numbers, `true`, `false`, `null`, empty arrays, and unquoted and quoted strings, with invalid escape sequences flagged
+- Delimiters in inline arrays and rows, list item markers, and full-line `#` comments
 
-- **v0.0.x** - Initial project setup, bare minimum structure (current)
-- **v0.1.x** - Basic syntax highlighting and file recognition
-- **v0.2.x** - Format validation and error detection
-- **v0.3.x** - Code formatting and auto-completion
-- **v1.0.0** - First stable release with full TOON format support
+Folding follows indentation, and pressing Enter after a line ending in `:` indents the next one.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+## Specification
 
-## Documentation
+Targets [TOON spec v4.1](https://github.com/toon-format/spec/blob/main/SPEC.md), and the test suite tokenizes the spec's decode fixtures.
 
-- [📜 TOON Specification](https://github.com/toon-format/spec) - Official specification
-- [🐛 Issues](https://github.com/toon-format/vscode/issues) - Bug reports and features
-- [🤝 Contributing](CONTRIBUTING.md) - Contribution guidelines
+## Resources
 
-## Related Projects
+- **Specification:** [SPEC.md](https://github.com/toon-format/spec/blob/main/SPEC.md) – Normative rules and conformance checklists
+- **Format Overview:** [toonformat.dev](https://toonformat.dev/guide/format-overview) – Every form with examples
+- **Other Implementations:** [toonformat.dev](https://toonformat.dev/ecosystem/implementations) – TOON in other languages
 
-- [toon](https://github.com/toon-format/toon) - TypeScript implementation
-- [toon-python](https://github.com/toon-format/toon-python) - Python implementation
-- [toon-rust](https://github.com/toon-format/toon-rust) - Rust implementation
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for the development setup and pull request guidelines.
 
 ## License
 
-MIT License – see [LICENSE](LICENSE) for details
+[MIT](./LICENSE) License © 2025-PRESENT Vishal Raut, Timofey Elsesser, and Johann Schopplich

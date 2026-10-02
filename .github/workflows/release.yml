@@ -1,4 +1,4 @@
-name: Release + Publish
+name: Release
 
 on:
   push:
@@ -7,45 +7,70 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
-  release:
-    name: Release
+  changelog:
     runs-on: ubuntu-latest
-
     permissions:
-      id-token: write
       contents: write
-
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
-          fetch-depth: 0 # Required for fetching tags and generating release notes
-          persist-credentials: true
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+          fetch-depth: 0
+          persist-credentials: false
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
-          cache: pnpm
 
       - name: Generate changelog and create GitHub release
         run: npx changelogithub
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Both registries trust OIDC tokens from this environment only
+    environment: release
+    permissions:
+      contents: read
+      id-token: write # OIDC for Azure login and Open VSX trusted publishing
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      # No dependency cache in a job that can mint publishing tokens
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build extension
-        run: pnpm run build
+      - name: Package extension
+        run: pnpm run package --out toon.vsix
+
+      - name: Log in to Azure
+        uses: azure/login@v3
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
       - name: Publish to VS Code Marketplace
-        run: pnpm run publish
-        env:
-          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: pnpm exec vsce publish --packagePath toon.vsix --azure-credential
+
+      - name: Publish to Open VSX
+        run: pnpm exec ovsx publish toon.vsix --trusted-publishing

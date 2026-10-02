@@ -1,117 +1,39 @@
-# Contributing to toon-vscode
+# Contributing to the TOON VS Code Extension
 
-Thank you for your interest in contributing to the official Visual Studio Code extension for TOON!
+## Development Setup
 
-## Project Setup
-
-This project uses `pnpm` for dependency management and TypeScript for development.
+The extension is a TextMate grammar (`syntaxes/toon.tmLanguage.json`) plus a language configuration – there is no build step.
 
 ```bash
-# Clone the repository
 git clone https://github.com/toon-format/vscode.git
-cd toon-vscode
-
-# Install dependencies
+cd vscode
 pnpm install
-
-# Build the extension
-pnpm build
-
-# Development mode (watch)
-pnpm dev
-
-# Run linting
+pnpm test
 pnpm lint
-
-# Type check
-pnpm test:types
 ```
 
-## Development Workflow
+`test/grammar.test.ts` snapshots the tokens of every `examples/valid` and `examples/conversions` document in `@toon-format/spec`, probes the scopes of cases the examples lack, and runs the spec's decode fixtures. After an intended grammar change, update the snapshots with `pnpm test -u` and review the diff in `test/__snapshots__/`.
 
-1. **Fork the repository** and create a feature branch
-2. **Make your changes** following the coding standards below
-3. **Add tests** for any new functionality
-4. **Ensure all checks pass** (lint, type check, build)
-5. **Submit a pull request** with a clear description
-
-## Testing the Extension
-
-To test your changes in VS Code:
-
-1. Open the project in VS Code
-2. Press `F5` to launch an Extension Development Host
-3. Test your changes in the development instance
-4. Check the Debug Console for errors or logs
+To try a change in VS Code, press `F5` to launch an Extension Development Host, open a `.toon` file, and run **Developer: Inspect Editor Tokens and Scopes**.
 
 ## Coding Standards
 
-### TypeScript
+ESLint runs with `@antfu/eslint-config`. `pnpm lint:fix` fixes what it can.
 
-- All code must include TypeScript types
-- Use strict mode (configured in `tsconfig.json`)
-- Run type checking before committing:
-  ```bash
-  pnpm test:types
-  ```
+## Pull Requests
 
-### Code Style
-
-- We use ESLint with `@antfu/eslint-config`
-- Run before committing:
-  ```bash
-  pnpm lint
-  pnpm lint:fix  # Auto-fix issues
-  ```
-
-### Node.js Version Support
-
-We target Node.js 24+ to match the main toon repository.
-
-## SPEC Compliance
-
-All implementations must comply with the [TOON specification](https://github.com/toon-format/spec/blob/main/SPEC.md).
-
-Before submitting changes that affect TOON format handling:
-1. Verify against the official SPEC.md
-2. Test with examples from the specification
-3. Document any spec version requirements
-
-## Pull Request Guidelines
-
-- **Title**: Use a clear, descriptive title
-- **Description**: Explain what changes you made and why
-- **Tests**: Include tests or manual testing instructions for your changes
-- **Documentation**: Update README or documentation if needed
-- **Commits**: Use clear commit messages ([Conventional Commits](https://www.conventionalcommits.org/) preferred)
-
-Your pull request will use our standard template which guides you through the required information.
+Add tests or a snapshot update for every grammar change and use [Conventional Commits](https://www.conventionalcommits.org/) for commit messages. The grammar follows [SPEC.md](https://github.com/toon-format/spec/blob/main/SPEC.md) – changes to the format itself belong in [toon-format/spec](https://github.com/toon-format/spec).
 
 ## Publishing
 
-Publishing to the Visual Studio Marketplace is handled by the release workflow. Only maintainers can trigger releases.
-
-To package the extension locally:
-```bash
-pnpm package  # Creates a .vsix file
-```
-
-## Communication
-
-- **GitHub Issues**: For bug reports and feature requests
-- **GitHub Discussions**: For questions and general discussion
-- **Pull Requests**: For code reviews and implementation discussion
+Maintainers release with `pnpm release`, which bumps the version and pushes a `v*` tag. The release workflow then publishes to the Visual Studio Marketplace and Open VSX. `pnpm package` builds a `.vsix` locally.
 
 ## Maintainers
-
-This is a collaborative project. Current maintainers:
 
 - [@VishalRaut2106](https://github.com/VishalRaut2106)
 - [@eveiljuice](https://github.com/eveiljuice)
 - [@johannschopplich](https://github.com/johannschopplich)
 
-All maintainers have equal and consensual decision-making power. For major architectural decisions, please open a discussion issue first.
-
 ## License
 
-By contributing, you agree that your contributions will be licensed under the MIT License.
+By contributing, you agree that your contributions are licensed under the MIT License.

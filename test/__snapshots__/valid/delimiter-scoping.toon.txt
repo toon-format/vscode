@@ -1,0 +1,31 @@
+> rows[1|]{id|value}:
+  "rows" support.type.property-name.toon
+  "[" punctuation.definition.array.begin.toon
+  "1" constant.numeric.length.toon
+  "|" punctuation.separator.delimiter.toon
+  "]" punctuation.definition.array.end.toon
+  "{" punctuation.definition.field-list.begin.toon
+  "id" support.type.property-name.field.toon
+  "|" punctuation.separator.delimiter.toon
+  "value" support.type.property-name.field.toon
+  "}" punctuation.definition.field-list.end.toon
+  ":" punctuation.separator.key-value.toon
+>   1|a,b
+  "1" constant.numeric.toon
+  "|" punctuation.separator.delimiter.toon
+  "a,b" string.unquoted.toon
+> 
+> items[1|]:
+  "items" support.type.property-name.toon
+  "[" punctuation.definition.array.begin.toon
+  "1" constant.numeric.length.toon
+  "|" punctuation.separator.delimiter.toon
+  "]" punctuation.definition.array.end.toon
+  ":" punctuation.separator.key-value.toon
+>   - note: "a,b"
+  "-" punctuation.definition.list.begin.toon
+  "note" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "\"" punctuation.definition.string.begin.toon
+  "a,b" string.quoted.double.toon
+  "\"" punctuation.definition.string.end.toon

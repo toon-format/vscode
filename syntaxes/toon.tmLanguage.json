@@ -1,0 +1,498 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "TOON",
+  "scopeName": "source.toon",
+  "comment": "TOON spec v4.1 – https://github.com/toon-format/spec/blob/main/SPEC.md",
+  "patterns": [
+    {
+      "include": "#comment-line"
+    },
+    {
+      "include": "#table"
+    },
+    {
+      "include": "#line"
+    }
+  ],
+  "repository": {
+    "comment-line": {
+      "comment": "§5.1: comment lines",
+      "match": "^ *(#).*$",
+      "name": "comment.line.number-sign.toon",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.comment.toon"
+        }
+      }
+    },
+    "table": {
+      "comment": "§9.3, §9.5, §10: a header with a field list and its rows, split by the header's delimiter. Rows sit deeper than the header, and under a list-item header deeper than the item's fields",
+      "patterns": [
+        {
+          "begin": "^( *)(?:(-)( ))?(?=(?:\"(?:[^\"\\\\]|\\\\.)*\"|[^\\s:\"\\[\\]{}](?:[^:\"\\[\\]{}]*[^\\s:\"\\[\\]{}])?)?\\[(?:0|[1-9][0-9]*):?\\]\\{)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.list.begin.toon"
+            }
+          },
+          "while": "^(?=\\1\\3\\3 +\\S| *(?:#|$))",
+          "patterns": [
+            {
+              "include": "#comment-line"
+            },
+            {
+              "include": "#header"
+            },
+            {
+              "match": "^ +(?:(?:(\"(?:[^\"\\\\]|\\\\.)*\")|([^\\s:\"\\[\\]{},](?:[^:\"\\[\\]{},]*[^\\s:\"\\[\\]{},])?)) *(:))?(.*)",
+              "captures": {
+                "1": {
+                  "name": "support.type.property-name.toon",
+                  "patterns": [
+                    {
+                      "include": "#string-escapes"
+                    }
+                  ]
+                },
+                "2": {
+                  "name": "support.type.property-name.toon"
+                },
+                "3": {
+                  "name": "punctuation.separator.key-value.toon"
+                },
+                "4": {
+                  "patterns": [
+                    {
+                      "include": "#cells-comma"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "begin": "^( *)(?:(-)( ))?(?=(?:\"(?:[^\"\\\\]|\\\\.)*\"|[^\\s:\"\\[\\]{}](?:[^:\"\\[\\]{}]*[^\\s:\"\\[\\]{}])?)?\\[(?:0|[1-9][0-9]*):?\\|\\]\\{)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.list.begin.toon"
+            }
+          },
+          "while": "^(?=\\1\\3\\3 +\\S| *(?:#|$))",
+          "patterns": [
+            {
+              "include": "#comment-line"
+            },
+            {
+              "include": "#header"
+            },
+            {
+              "match": "^ +(?:(?:(\"(?:[^\"\\\\]|\\\\.)*\")|([^\\s:\"\\[\\]{}|](?:[^:\"\\[\\]{}|]*[^\\s:\"\\[\\]{}|])?)) *(:))?(.*)",
+              "captures": {
+                "1": {
+                  "name": "support.type.property-name.toon",
+                  "patterns": [
+                    {
+                      "include": "#string-escapes"
+                    }
+                  ]
+                },
+                "2": {
+                  "name": "support.type.property-name.toon"
+                },
+                "3": {
+                  "name": "punctuation.separator.key-value.toon"
+                },
+                "4": {
+                  "patterns": [
+                    {
+                      "include": "#cells-pipe"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "begin": "^( *)(?:(-)( ))?(?=(?:\"(?:[^\"\\\\]|\\\\.)*\"|[^\\s:\"\\[\\]{}](?:[^:\"\\[\\]{}]*[^\\s:\"\\[\\]{}])?)?\\[(?:0|[1-9][0-9]*):?\\t\\]\\{)",
+          "beginCaptures": {
+            "2": {
+              "name": "punctuation.definition.list.begin.toon"
+            }
+          },
+          "while": "^(?=\\1\\3\\3 +\\S| *(?:#|$))",
+          "patterns": [
+            {
+              "include": "#comment-line"
+            },
+            {
+              "include": "#header"
+            },
+            {
+              "match": "^ +(?:(?:(\"(?:[^\"\\\\]|\\\\.)*\")|([^\\s:\"\\[\\]{}](?:[^:\"\\[\\]{}\\t]*[^\\s:\"\\[\\]{}])?)) *(:))?(.*)",
+              "captures": {
+                "1": {
+                  "name": "support.type.property-name.toon",
+                  "patterns": [
+                    {
+                      "include": "#string-escapes"
+                    }
+                  ]
+                },
+                "2": {
+                  "name": "support.type.property-name.toon"
+                },
+                "3": {
+                  "name": "punctuation.separator.key-value.toon"
+                },
+                "4": {
+                  "patterns": [
+                    {
+                      "include": "#cells-tab"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "line": {
+      "begin": "^[ \\t]*(?=\\S)",
+      "end": "$",
+      "patterns": [
+        {
+          "include": "#list-item"
+        },
+        {
+          "include": "#line-content"
+        }
+      ]
+    },
+    "list-item": {
+      "comment": "§9.4, §10: list items",
+      "begin": "\\G(-)(?: |$)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.list.begin.toon"
+        }
+      },
+      "end": "(?=$)",
+      "patterns": [
+        {
+          "include": "#line-content"
+        }
+      ]
+    },
+    "line-content": {
+      "patterns": [
+        {
+          "include": "#header"
+        },
+        {
+          "include": "#key-value"
+        },
+        {
+          "include": "#value"
+        }
+      ]
+    },
+    "header": {
+      "comment": "§6: array headers, including keyed headers; inline values split by the bracket's delimiter",
+      "begin": "\\G(?:(\"(?:[^\"\\\\]|\\\\.)*\")|([^\\s:\"\\[\\]{}](?:[^:\"\\[\\]{}]*[^\\s:\"\\[\\]{}])?))?(\\[)(0|[1-9][0-9]*)(:)?(\\t|\\|)?(\\])(?=[{:])",
+      "beginCaptures": {
+        "1": {
+          "name": "support.type.property-name.toon",
+          "patterns": [
+            {
+              "include": "#string-escapes"
+            }
+          ]
+        },
+        "2": {
+          "name": "support.type.property-name.toon"
+        },
+        "3": {
+          "name": "punctuation.definition.array.begin.toon"
+        },
+        "4": {
+          "name": "constant.numeric.length.toon"
+        },
+        "5": {
+          "name": "keyword.operator.keyed.toon"
+        },
+        "6": {
+          "name": "punctuation.separator.delimiter.toon"
+        },
+        "7": {
+          "name": "punctuation.definition.array.end.toon"
+        }
+      },
+      "end": "$",
+      "patterns": [
+        {
+          "include": "#field-list"
+        },
+        {
+          "match": "(?<=\\|\\])(:)(.*)",
+          "captures": {
+            "1": {
+              "name": "punctuation.separator.key-value.toon"
+            },
+            "2": {
+              "patterns": [
+                {
+                  "include": "#cells-pipe"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "match": "(?<=\\t\\])(:)(.*)",
+          "captures": {
+            "1": {
+              "name": "punctuation.separator.key-value.toon"
+            },
+            "2": {
+              "patterns": [
+                {
+                  "include": "#cells-tab"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "match": "(:)(.*)",
+          "captures": {
+            "1": {
+              "name": "punctuation.separator.key-value.toon"
+            },
+            "2": {
+              "patterns": [
+                {
+                  "include": "#cells-comma"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "field-list": {
+      "comment": "§6, §9.3: field lists with nested field groups",
+      "begin": "\\{",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.field-list.begin.toon"
+        }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.field-list.end.toon"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#field-list"
+        },
+        {
+          "match": "\"(?:[^\"\\\\]|\\\\.)*\"",
+          "name": "support.type.property-name.field.toon",
+          "captures": {
+            "0": {
+              "patterns": [
+                {
+                  "include": "#string-escapes"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "match": "[,|\\t]",
+          "name": "punctuation.separator.delimiter.toon"
+        },
+        {
+          "match": "[^,|\\t\"{}]+",
+          "name": "support.type.property-name.field.toon"
+        }
+      ]
+    },
+    "key-value": {
+      "comment": "§5.2, §7.4: keys",
+      "match": "\\G(?:(\"(?:[^\"\\\\]|\\\\.)*\")|([^\\s:\"\\[\\]{}](?:[^:\"\\[\\]{}]*[^\\s:\"\\[\\]{}])?))[ ]*(:)(.*)$",
+      "captures": {
+        "1": {
+          "name": "support.type.property-name.toon",
+          "patterns": [
+            {
+              "include": "#string-escapes"
+            }
+          ]
+        },
+        "2": {
+          "name": "support.type.property-name.toon"
+        },
+        "3": {
+          "name": "punctuation.separator.key-value.toon"
+        },
+        "4": {
+          "patterns": [
+            {
+              "include": "#value"
+            }
+          ]
+        }
+      }
+    },
+    "value": {
+      "comment": "§4, §11.2: a field value, list-item primitive, or root primitive is one token, delimiters included",
+      "patterns": [
+        {
+          "include": "#string-quoted"
+        },
+        {
+          "match": "\\[\\](?= *$)",
+          "name": "constant.language.empty-array.toon"
+        },
+        {
+          "include": "#primitive"
+        }
+      ]
+    },
+    "cells-comma": {
+      "comment": "§9.1, §9.3, §11.2: inline array values and row cells, split by the active delimiter only; `[]` is a string here",
+      "patterns": [
+        {
+          "include": "#string-quoted"
+        },
+        {
+          "match": ",",
+          "name": "punctuation.separator.delimiter.toon"
+        },
+        {
+          "match": "[^,\" ][^,]*",
+          "captures": {
+            "0": {
+              "patterns": [
+                {
+                  "include": "#primitive"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "cells-pipe": {
+      "patterns": [
+        {
+          "include": "#string-quoted"
+        },
+        {
+          "match": "\\|",
+          "name": "punctuation.separator.delimiter.toon"
+        },
+        {
+          "match": "[^|\" ][^|]*",
+          "captures": {
+            "0": {
+              "patterns": [
+                {
+                  "include": "#primitive"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "cells-tab": {
+      "patterns": [
+        {
+          "include": "#string-quoted"
+        },
+        {
+          "match": "\\t",
+          "name": "punctuation.separator.delimiter.toon"
+        },
+        {
+          "match": "[^\\t\" ][^\\t]*",
+          "captures": {
+            "0": {
+              "patterns": [
+                {
+                  "include": "#primitive"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "primitive": {
+      "comment": "§4: an unquoted token is a literal or a number only as a whole",
+      "patterns": [
+        {
+          "match": "(?:true|false|null)(?= *$)",
+          "name": "constant.language.toon"
+        },
+        {
+          "match": "-?(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?(?:[eE][+-]?[0-9]+)?(?= *$)",
+          "name": "constant.numeric.toon"
+        },
+        {
+          "match": "[^ ](?:.*[^ ])?",
+          "name": "string.unquoted.toon"
+        }
+      ]
+    },
+    "string-quoted": {
+      "comment": "§7.1: quoted strings; an unterminated one is an error",
+      "patterns": [
+        {
+          "match": "\"(?:[^\"\\\\]|\\\\.)*\\\\?$",
+          "name": "invalid.illegal.unterminated-string.toon"
+        },
+        {
+          "begin": "\"",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.toon"
+            }
+          },
+          "end": "\"|$",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.toon"
+            }
+          },
+          "name": "string.quoted.double.toon",
+          "patterns": [
+            {
+              "include": "#string-escapes"
+            }
+          ]
+        }
+      ]
+    },
+    "string-escapes": {
+      "comment": "§7.1: escapes in quoted strings, keys, and field names",
+      "patterns": [
+        {
+          "match": "\\\\(?:[\\\\\"nrt]|u[0-9A-Fa-f]{4})",
+          "name": "constant.character.escape.toon"
+        },
+        {
+          "match": "\\\\.?",
+          "name": "invalid.illegal.unrecognized-string-escape.toon"
+        }
+      ]
+    }
+  }
+}

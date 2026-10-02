@@ -1,0 +1,33 @@
+> user:
+  "user" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+>   id: 123
+  "id" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "123" constant.numeric.toon
+>   name: Ada Lovelace
+  "name" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "Ada Lovelace" string.unquoted.toon
+>   contact:
+  "contact" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+>     email: ada@example.com
+  "email" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "ada@example.com" string.unquoted.toon
+>     phone: +1-555-0100
+  "phone" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "+1-555-0100" string.unquoted.toon
+>   settings:
+  "settings" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+>     theme: dark
+  "theme" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "dark" string.unquoted.toon
+>     notifications: true
+  "notifications" support.type.property-name.toon
+  ":" punctuation.separator.key-value.toon
+  "true" constant.language.toon
