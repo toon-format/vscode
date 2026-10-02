@@ -58,6 +58,9 @@ describe('grammar', () => {
     ['n[4]: 1e5,-0,.5,05', '.5', 'string.unquoted.toon'],
     ['n[4]: 1e5,-0,.5,05', '05', 'string.unquoted.toon'],
     ['n: +1', '+1', 'string.unquoted.toon'],
+    // §9.3 `[]` is a string inside inline arrays and rows
+    ['tags[1]: []', '[]', 'string.unquoted.toon'],
+    ['- []', '[]', 'constant.language.empty-array.toon'],
     // §7.1 escapes
     ['k: "\\u00e9"', '\\u00e9', 'constant.character.escape.toon'],
     ['k: "\\/"', '\\/', 'invalid.illegal.unrecognized-string-escape.toon'],

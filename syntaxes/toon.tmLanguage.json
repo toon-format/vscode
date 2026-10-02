@@ -58,6 +58,9 @@
           "include": "#key-value"
         },
         {
+          "include": "#empty-array"
+        },
+        {
           "include": "#values"
         }
       ]
@@ -158,6 +161,9 @@
         "4": {
           "patterns": [
             {
+              "include": "#empty-array"
+            },
+            {
               "include": "#values"
             }
           ]
@@ -169,9 +175,6 @@
       "patterns": [
         {
           "include": "#string-quoted"
-        },
-        {
-          "include": "#empty-array"
         },
         {
           "include": "#constant"
@@ -216,7 +219,7 @@
       ]
     },
     "empty-array": {
-      "comment": "§9.1: empty arrays",
+      "comment": "§4, §9.1: `[]` is an empty array as a field value, list item, or root; in inline arrays and rows it is a string",
       "match": "(?<![^ ])\\[\\](?=[ ]*$)",
       "name": "constant.language.empty-array.toon"
     },
