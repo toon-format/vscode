@@ -12,13 +12,9 @@ pnpm test
 pnpm lint
 ```
 
-`test/grammar.test.ts` snapshots the tokens of every `examples/valid` and `examples/conversions` document in `@toon-format/spec`, probes the scopes of cases the examples lack, and runs the spec's decode fixtures. After an intended grammar change, update the snapshots with `pnpm test -u` and review the diff in `test/__snapshots__/`.
+After an intended grammar change, update the snapshots with `pnpm test -u` and review the diff in `test/__snapshots__/`.
 
 To try a change in VS Code, press `F5` to launch an Extension Development Host, open a `.toon` file, and run **Developer: Inspect Editor Tokens and Scopes**.
-
-## Coding Standards
-
-ESLint runs with `@antfu/eslint-config`. `pnpm lint:fix` fixes what it can.
 
 ## Pull Requests
 
