@@ -9,15 +9,12 @@
     "types": ["node"],
     "strict": true,
     "noUncheckedIndexedAccess": true,
-    "declaration": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "isolatedDeclarations": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
     "erasableSyntaxOnly": true,
     "skipLibCheck": true
   },
-  "include": ["test/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["test/**/*"]
 }
