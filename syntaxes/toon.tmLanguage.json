@@ -2,7 +2,6 @@
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "name": "TOON",
   "scopeName": "source.toon",
-  "comment": "TOON spec v4.1 – https://github.com/toon-format/spec/blob/main/SPEC.md",
   "patterns": [
     {
       "include": "#comment-line"
