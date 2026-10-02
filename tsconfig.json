@@ -6,6 +6,7 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "resolveJsonModule": true,
+    "types": ["node"],
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "declaration": true,
@@ -17,6 +18,6 @@
     "erasableSyntaxOnly": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*"],
+  "include": ["test/**/*"],
   "exclude": ["node_modules", "dist"]
 }
