@@ -28,12 +28,6 @@ Add tests or a snapshot update for every grammar change and use [Conventional Co
 
 Maintainers release with `pnpm release`, which bumps the version and pushes a `v*` tag. The release workflow then publishes to the Visual Studio Marketplace and Open VSX. `pnpm package` builds a `.vsix` locally.
 
-## Maintainers
-
-- [@VishalRaut2106](https://github.com/VishalRaut2106)
-- [@eveiljuice](https://github.com/eveiljuice)
-- [@johannschopplich](https://github.com/johannschopplich)
-
 ## License
 
 By contributing, you agree that your contributions are licensed under the MIT License.
