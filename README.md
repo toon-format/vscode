@@ -34,7 +34,7 @@ Folding follows indentation, and pressing Enter after a line ending in `:` inden
 
 ## Specification
 
-Targets [TOON spec v4.1](https://github.com/toon-format/spec/blob/main/SPEC.md), and the test suite tokenizes the spec's decode fixtures.
+Targets [TOON spec v4.1](https://github.com/toon-format/spec/blob/main/SPEC.md).
 
 ## Resources
 

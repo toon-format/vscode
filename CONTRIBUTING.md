@@ -12,27 +12,17 @@ pnpm test
 pnpm lint
 ```
 
-`test/grammar.test.ts` snapshots the tokens of every `examples/valid` and `examples/conversions` document in `@toon-format/spec`, probes the scopes of cases the examples lack, and runs the spec's decode fixtures. After an intended grammar change, update the snapshots with `pnpm test -u` and review the diff in `test/__snapshots__/`.
+After an intended grammar change, update the snapshots with `pnpm test -u` and review the diff in `test/__snapshots__/`.
 
 To try a change in VS Code, press `F5` to launch an Extension Development Host, open a `.toon` file, and run **Developer: Inspect Editor Tokens and Scopes**.
 
-## Coding Standards
-
-ESLint runs with `@antfu/eslint-config`. `pnpm lint:fix` fixes what it can.
-
 ## Pull Requests
 
-Add tests or a snapshot update for every grammar change and use [Conventional Commits](https://www.conventionalcommits.org/) for commit messages. The grammar follows [SPEC.md](https://github.com/toon-format/spec/blob/main/SPEC.md) – changes to the format itself belong in [toon-format/spec](https://github.com/toon-format/spec).
+Spec behavior is tested through the spec fixtures – a missing case goes to toon-format/spec as a fixture. Use [Conventional Commits](https://www.conventionalcommits.org/) for commit messages. The grammar follows [SPEC.md](https://github.com/toon-format/spec/blob/main/SPEC.md) – changes to the format itself belong in [toon-format/spec](https://github.com/toon-format/spec).
 
 ## Publishing
 
 Maintainers release with `pnpm release`, which bumps the version and pushes a `v*` tag. The release workflow then publishes to the Visual Studio Marketplace and Open VSX. `pnpm package` builds a `.vsix` locally.
-
-## Maintainers
-
-- [@VishalRaut2106](https://github.com/VishalRaut2106)
-- [@eveiljuice](https://github.com/eveiljuice)
-- [@johannschopplich](https://github.com/johannschopplich)
 
 ## License
 
