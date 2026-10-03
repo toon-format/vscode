@@ -48,4 +48,4 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for the development setup and pull requ
 
 ## License
 
-[MIT](./LICENSE) License © 2025-PRESENT Vishal Raut, Timofey Elsesser, and Johann Schopplich
+[MIT](./LICENSE) License © 2025-PRESENT [Vishal Raut](https://github.com/VishalRaut2106), [Timofey Elsesser](https://github.com/eveiljuice), and [Johann Schopplich](https://github.com/johannschopplich)
