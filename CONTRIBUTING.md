@@ -18,7 +18,7 @@ To try a change in VS Code, press `F5` to launch an Extension Development Host, 
 
 ## Pull Requests
 
-Spec behavior is tested through the spec fixtures – a missing case goes to toon-format/spec as a fixture. Use [Conventional Commits](https://www.conventionalcommits.org/) for commit messages. The grammar follows [SPEC.md](https://github.com/toon-format/spec/blob/main/SPEC.md) – changes to the format itself belong in [toon-format/spec](https://github.com/toon-format/spec).
+A scope the spec examples don't cover gets a row in the `grammar` table in `test/grammar.test.ts`; a case the spec itself lacks goes to toon-format/spec as a fixture. Use [Conventional Commits](https://www.conventionalcommits.org/) for commit messages. The grammar follows [SPEC.md](https://github.com/toon-format/spec/blob/main/SPEC.md) – changes to the format itself belong in [toon-format/spec](https://github.com/toon-format/spec).
 
 ## Publishing
 
