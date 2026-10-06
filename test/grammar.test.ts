@@ -39,38 +39,32 @@ function scopeOf(source: string, text: string): string | undefined {
 
 describe('grammar', () => {
   it.each([
-    // §5.1 comment lines
     ['name: "a # b"', 'a # b', 'string.quoted.double.toon'],
     ['note: x #tag', 'x #tag', 'string.unquoted.toon'],
-    // §6 headers
     ['"a:b"[2]: 1,2', '"a:b"', 'support.type.property-name.toon'],
     ['  - key[2]{a,b}:', 'key', 'support.type.property-name.toon'],
     ['a[2:]{x}', 'a[2:]{x}', 'string.unquoted.toon'],
-    // §9.5 keyed tabular form
     ['[2:|]{a|b}:', 'b', 'support.type.property-name.field.toon'],
-    // §5.2 key-value lines, §7.4 unquoted key tokens
     ['a:b[2]: x', 'a', 'support.type.property-name.toon'],
     ['foo-bar: 1', 'foo-bar', 'support.type.property-name.toon'],
     [': 1', ':', 'punctuation.separator.key-value.toon'],
     ['m[1:]{v}:\n  : 4', ':', 'punctuation.separator.key-value.toon'],
-    // §12 the value token is trimmed, so the space after the colon is optional
+    // The value token is trimmed, so the space after the colon is optional
     ['a:30', '30', 'constant.numeric.toon'],
     ['a:true', 'true', 'constant.language.toon'],
-    // §4 number grammar
     ['n[4]: 1e5,-0,.5,05', '1e5', 'constant.numeric.toon'],
     ['n[4]: 1e5,-0,.5,05', '-0', 'constant.numeric.toon'],
     ['n[4]: 1e5,-0,.5,05', '.5', 'string.unquoted.toon'],
     ['n[4]: 1e5,-0,.5,05', '05', 'string.unquoted.toon'],
     ['n: +1', '+1', 'string.unquoted.toon'],
-    // §11.2 only the active delimiter splits, and only inline arrays and rows
+    // Only the active delimiter splits, and only inline arrays and rows
     ['n: a,b|c', 'a,b|c', 'string.unquoted.toon'],
     ['x[2|]: a,b|c', 'a,b', 'string.unquoted.toon'],
     ['- t[1|]{a|b}:\n    x,y|z', 'x,y', 'string.unquoted.toon'],
     ['- t[1|]{a|b}:\n    x|y\n  k: a|b', 'a|b', 'string.unquoted.toon'],
-    // §9.3 `[]` is a string inside inline arrays and rows
+    // `[]` is a string inside inline arrays and rows
     ['tags[1]: []', '[]', 'string.unquoted.toon'],
     ['- []', '[]', 'constant.language.empty-array.toon'],
-    // §7.1 escapes
     ['k: "\\u00e9"', '\\u00e9', 'constant.character.escape.toon'],
     ['k: "\\/"', '\\/', 'invalid.illegal.unrecognized-string-escape.toon'],
     ['"a\\/b": 1', '\\/', 'invalid.illegal.unrecognized-string-escape.toon'],
@@ -82,7 +76,7 @@ describe('grammar', () => {
 })
 
 describe('spec decode fixtures', () => {
-  it.each(fixtureFiles)('%s: comment scope matches §5.1 exactly', async (file) => {
+  it.each(fixtureFiles)('%s: comment scope matches the comment lines exactly', async (file) => {
     const { tests } = JSON.parse(await readFile(new URL(file, fixtureDir), 'utf-8')) as { tests: { input: string }[] }
     for (const { input } of tests) {
       const lines = input.split('\n')
