@@ -12,8 +12,8 @@ importers:
         specifier: ^9.5.1
         version: 9.5.1(@typescript-eslint/typescript-estree@8.71.0(supports-color@7.2.0)(typescript@6.0.3))(@typescript-eslint/utils@8.71.0(eslint@10.11.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(@vue/compiler-sfc@3.5.25)(eslint@10.11.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(ts-declaration-location@1.0.7(typescript@6.0.3))(typescript@6.0.3)(vitest@5.0.3(@types/node@26.6.3)(vite@8.3.1(@types/node@26.6.3)(jiti@2.7.0)(yaml@2.9.1)))
       '@toon-format/spec':
-        specifier: ^4.1.2
-        version: 4.1.2
+        specifier: ^4.3.0
+        version: 4.3.0
       '@types/node':
         specifier: ^26.6.3
         version: 26.6.3
@@ -831,8 +831,8 @@ packages:
   '@textlint/types@15.8.0':
     resolution: {integrity: sha512-Anhc6y5736YIsvqae0U6k0YmB2M/QVHkEeOv2aydAn/WIkdI69dCOiDbe3/+RagS3qstFTSFWJzNRA2lUjv19w==}
 
-  '@toon-format/spec@4.1.2':
-    resolution: {integrity: sha512-e6IrY312qaBzY/O/wyxhICU28t/v85lrOTzEoFyMWQZBGTX0uxpUmlzaQsK8FL4S8n60MlU3QMIDQ27QQYiTjw==}
+  '@toon-format/spec@4.3.0':
+    resolution: {integrity: sha512-RN2tNyWer+geNO33HhsKCleH+YsMggBaH+2tSIY43sJJAivCzguce5jcAthBd+RTTDr8qM2UvhElPDIeuVt2Kw==}
 
   '@types/chai@5.2.3':
     resolution: {integrity: sha512-Mw558oeA9fFbv65/y4mHtXDs9bPnFMZAL/jxdPFUpOHHIXX91mcgEHbS5Lahr+pwZFR8A7GQleRWeI6cGFC2UA==}
@@ -3952,7 +3952,7 @@ snapshots:
     dependencies:
       '@textlint/ast-node-types': 15.8.0
 
-  '@toon-format/spec@4.1.2': {}
+  '@toon-format/spec@4.3.0': {}
 
   '@types/chai@5.2.3':
     dependencies:
