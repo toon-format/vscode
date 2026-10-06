@@ -50,6 +50,8 @@ describe('grammar', () => {
     // §5.2 key-value lines, §7.4 unquoted key tokens
     ['a:b[2]: x', 'a', 'support.type.property-name.toon'],
     ['foo-bar: 1', 'foo-bar', 'support.type.property-name.toon'],
+    [': 1', ':', 'punctuation.separator.key-value.toon'],
+    ['m[1:]{v}:\n  : 4', ':', 'punctuation.separator.key-value.toon'],
     // §12 the value token is trimmed, so the space after the colon is optional
     ['a:30', '30', 'constant.numeric.toon'],
     ['a:true', 'true', 'constant.language.toon'],
