@@ -45,6 +45,7 @@ describe('grammar', () => {
     // §6 headers
     ['"a:b"[2]: 1,2', '"a:b"', 'support.type.property-name.toon'],
     ['  - key[2]{a,b}:', 'key', 'support.type.property-name.toon'],
+    ['a[2:]{x}', 'a[2:]{x}', 'string.unquoted.toon'],
     // §9.5 keyed tabular form
     ['[2:|]{a|b}:', 'b', 'support.type.property-name.field.toon'],
     // §5.2 key-value lines, §7.4 unquoted key tokens
