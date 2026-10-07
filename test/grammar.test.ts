@@ -47,6 +47,7 @@ describe('grammar', () => {
     ['a[2:]{x}', 'a[2:]{x}', 'string.unquoted.toon'],
     // Whitespace is SP and HTAB only, so an NBSP is part of the key
     ['n [1]: y', 'n ', 'support.type.property-name.toon'],
+    ['a\t: 1', 'a\t', 'support.type.property-name.toon'],
     ['[2:|]{a|b}:', 'b', 'support.type.property-name.field.toon'],
     ['a:b[2]: x', 'a', 'support.type.property-name.toon'],
     ['foo-bar: 1', 'foo-bar', 'support.type.property-name.toon'],
