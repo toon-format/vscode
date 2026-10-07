@@ -43,6 +43,8 @@ describe('grammar', () => {
     ['note: x #tag', 'x #tag', 'string.unquoted.toon'],
     ['"a:b"[2]: 1,2', '"a:b"', 'support.type.property-name.toon'],
     ['  - key[2]{a,b}:', 'key', 'support.type.property-name.toon'],
+    // A list-item hyphen may be followed by several spaces
+    ['-  key[1]: x', 'key', 'support.type.property-name.toon'],
     ['a[2:]{x}', 'a[2:]{x}', 'string.unquoted.toon'],
     // Whitespace is SP and HTAB only, so an NBSP is part of the key
     ['n [1]: y', 'n ', 'support.type.property-name.toon'],
