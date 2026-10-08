@@ -1,6 +1,6 @@
 minimumReleaseAgeExcludePrune: true
 minimumReleaseAgeExclude:
-  - '@toon-format/spec@4.3.0'
+  - '@toon-format/spec@4.4.0'
 
 trustPolicy: no-downgrade
 trustPolicyExclude:
