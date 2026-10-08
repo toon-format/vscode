@@ -1,7 +1,7 @@
 # TOON for Visual Studio Code
 
 [![Visual Studio Marketplace](https://img.shields.io/visual-studio-marketplace/v/toon-format.toon)](https://marketplace.visualstudio.com/items?itemName=toon-format.toon)
-[![SPEC v4.3](https://img.shields.io/badge/spec-v4.3-lightgrey)](https://github.com/toon-format/spec/blob/v4.3.0/SPEC.md)
+[![SPEC v4.4](https://img.shields.io/badge/spec-v4.4-lightgrey)](https://github.com/toon-format/spec/blob/v4.4.0/SPEC.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 Highlights [TOON (Token-Oriented Object Notation)](https://github.com/toon-format/toon) in `.toon` files. TOON is a compact, indentation-based encoding of the JSON data model for LLM input.
@@ -34,7 +34,7 @@ Folding follows indentation, and pressing Enter after a line ending in `:` inden
 
 ## Specification
 
-Targets [TOON spec v4.3](https://github.com/toon-format/spec/blob/v4.3.0/SPEC.md).
+Targets [TOON spec v4.4](https://github.com/toon-format/spec/blob/v4.4.0/SPEC.md).
 
 ## Resources
 
